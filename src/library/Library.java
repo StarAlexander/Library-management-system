@@ -116,4 +116,8 @@ public class Library {
     public String getStatistics() {
         return String.format("All books:%d, Available: %d",books.size(),getAvailableBooks().size());
     }
+
+    public void removeBook(int id) {
+        books.removeIf(b -> b.getId() == id);
+    }
 }
