@@ -112,4 +112,8 @@ public class Library {
     public void printOperationLog() {
         operationLog.entries.forEach(System.out::println);
     }
+
+    public String getStatistics() {
+        return String.format("All books:%d, Available: %d",books.size(),getAvailableBooks().size());
+    }
 }
