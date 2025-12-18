@@ -14,7 +14,48 @@ public class Library {
     private final OperationLog operationLog;
 
 
+    public static class OperationLog {
+        public static class LogEntry {
+            private final OperationType operationType;
+            private final LocalDateTime timestamp;
+            private final String description;
 
+            public LogEntry(OperationType operationType, LocalDateTime timestamp, String description) {
+                this.operationType = operationType;
+                this.timestamp = timestamp;
+                this.description = description;
+            }
+
+            public OperationType getOperationType() {
+                return operationType;
+            }
+
+            public LocalDateTime getTimestamp() {
+                return timestamp;
+            }
+
+            public String getDescription() {
+                return description;
+            }
+        }
+
+        public enum OperationType {
+            ADD_BOOK,BORROW,RETURN
+        }
+
+        private List<LogEntry> entries;
+
+        public void addEntry(Book book,OperationType op,String description) {
+            var entry = new LogEntry(op,LocalDateTime.now(),description);
+            entries.add(entry);
+        }
+
+        public List<LogEntry> getEntries(){
+            return entries;
+        }
+
+
+    }
 
     public Library() {
         books = new ArrayList<>();
