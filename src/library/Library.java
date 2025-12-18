@@ -69,12 +69,14 @@ public class Library {
     }
 
     public Book findBookById(int id) {
-        books.forEach((Book b) -> {
+        Book book = null;
+        for (var b:books) {
             if (b.getId() == id) {
-                return b;
+                book = b;
+                break;
             }
-        });
-        return null;
+        }
+        return book;
     }
 
     public List<Book> findBooksByAuthor(String author) {
@@ -104,7 +106,7 @@ public class Library {
     }
 
     public List<Book> getAvailableBooks() {
-        return books.stream().filter(b -> b.getAvailable()).toList();
+        return books.stream().filter(Book::isAvailable).toList();
     }
 
     public void printOperationLog() {
